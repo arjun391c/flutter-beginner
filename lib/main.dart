@@ -1,5 +1,5 @@
 import 'package:fclearn/pages/home_page.dart';
-import 'package:fclearn/pages/home_page_with_fb.dart';
+import 'package:fclearn/pages/home_page_with_sb.dart';
 import 'package:fclearn/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,14 +19,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Constants.prefs.getBool("loggedIn") == true
-            ? HomePageFB()
+            ? HomePageSB()
             : LoginPage(),
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
         routes: {
           LoginPage.routeName: (context) => LoginPage(),
-          HomePage.routeName: (context) => HomePage(),
+          HomePage.routeName: (context) => HomePageSB(),
         });
   }
 }
