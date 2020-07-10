@@ -1,10 +1,13 @@
+import 'package:fclearn/pages/login_page.dart';
+import 'package:fclearn/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../drawer.dart';
+import '../widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
+  static const String routeName = "/home";
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -28,7 +31,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Awesome App")),
+      appBar: AppBar(
+        title: Text("Awesome App"),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                Constants.prefs.setBool("loggedIn", false);
+                // Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, LoginPage.routeName);
+              })
+        ],
+      ),
       drawer: MyDrawer(),
       backgroundColor: Colors.grey[200],
       body: data != null
